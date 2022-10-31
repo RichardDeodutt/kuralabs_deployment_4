@@ -82,6 +82,8 @@ pipeline{
       steps {
         sh '''#!/bin/bash
           source testenv/bin/activate
+          terraform output -raw instance_ip > instance_ip
+          sed -i 's,http://127.0.0.1:5000,(cat instance_ip),g' cypress/integration/test.spec.js
           NO_COLOR=1 /usr/bin/npx cypress run --config video=false --spec cypress/integration/test.spec.js
           '''
       }

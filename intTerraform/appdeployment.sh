@@ -183,6 +183,8 @@ statuscheck(){
 
 #The main function
 main(){
+    #Wait for the system to be ready
+    cloud-init status --wait
     #Update local apt repo database
     aptupdatelog
     #Install git if not already
