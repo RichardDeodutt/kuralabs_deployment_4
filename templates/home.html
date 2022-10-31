@@ -32,8 +32,11 @@
           <label for="code">Short Name</label>
           <input type="text" class="form-control" name="code" id="code" value="" required>
           <br>
-          <label for="long_url">Website URL</label>
-          <input type="file" class="form-control" name="file" id="file" required>
+          <label for="long_url">Upload File</label>
+          <div id="fileupload" class="d-flex flex-column flex-md-row align-items-center text-center justify-content-between">
+            <label id="fileselected" class="form-label" for="ufile" title="Please fill out this field.">No File Chosen</label>
+            <input type="file" class="form-control" style="display: none;" name="file" id="ufile" onchange="var fupload=document.getElementById('ufile').value;if(fupload == ''){document.getElementById('fileselected').textContent='No File Chosen';}else{document.getElementById('fileselected').textContent=fupload.split('\\').pop();}" required>
+          </div>
           <br>
           <button class="btn btn-primary btn-lg btn-block" type="submit">Shorten</button>
         </form>
