@@ -98,7 +98,7 @@ pipeline{
 
           echo "Checking server..."
           
-          if [ $(date +%s) -ge $(echo "$StartEpoch + $Timeout" | bc) ]; then
+          if [ $(date +%s) -ge $("${StartEpoch} + ${Timeout}" | bc) ]; then
 
             echo "Timedout waitig for server" ; exit 1
           
