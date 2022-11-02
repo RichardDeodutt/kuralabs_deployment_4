@@ -88,6 +88,8 @@ pipeline{
           
           StartEpoch=$(date +%s)
 
+          Timeout=600
+
           Retry=15
 
           echo "Waiting for Server to come up at: $(cat instance_ip)"
@@ -98,7 +100,7 @@ pipeline{
 
           echo "Checking server..."
           
-          if [ $(date +%s) -ge $("${StartEpoch} + ${Timeout}" | bc) ]; then
+          if [ $(date +%s) -ge $(echo "$StartEpoch + $Timeout" | bc) ]; then
 
             echo "Timedout waitig for server" ; exit 1
           
