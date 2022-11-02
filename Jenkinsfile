@@ -92,7 +92,7 @@ pipeline{
 
           echo "Waiting for Server to come up at: $(cat instance_ip)"
 
-          while [ $(ping $(cat instance_ip) -c 1 -W 0.5) -ne 0 ]; do
+          while [ $(curl --connect-timeout 1 http://35.77.47.54:8000/ > /dev/null 2>&1 ; echo $?) -ne 0 ]; do
 
           sleep $Retry
 
@@ -103,7 +103,7 @@ pipeline{
             echo "Timedout waitig for server" ; exit 1
           
           fi
-          
+
           done
 
           NO_COLOR=1 /usr/bin/npx cypress run --config video=false --spec cypress/integration/test.spec.js
