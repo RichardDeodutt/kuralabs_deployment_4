@@ -85,8 +85,9 @@ pipeline{
           echo "http://$(terraform output -raw instance_ip)/" > ../instance_ip
           cd ..
           sed -i "s,http://127.0.0.1:5000,$(cat instance_ip),g" cypress/integration/test.spec.js
+          echo "Waiting for Server to come up"
+          sleep 300
           NO_COLOR=1 /usr/bin/npx cypress run --config video=false --spec cypress/integration/test.spec.js
-          sleep 120
           '''
       }
       post{
