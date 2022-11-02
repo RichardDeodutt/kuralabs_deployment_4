@@ -106,6 +106,8 @@ pipeline{
 
           done
 
+          echo "Server up!"
+
           NO_COLOR=1 /usr/bin/npx cypress run --config video=false --spec cypress/integration/test.spec.js
           '''
       }
